@@ -12,7 +12,7 @@ function Home() {
   const [newTitle, setNewTitle] = useState("");
 
   const handleClickElement = (e) => {
-    setCurrentThread(e.target.value);
+    if (e != undefined) setCurrentThread(e.target.value);
     setIsOpenThread(!isOpenThread);
     setNewTitle("");
   };
@@ -45,7 +45,11 @@ function Home() {
             <button className="backBtn" onClick={handleClickElement}>
               <img className="backImg" src={Back} />
             </button>
-            <PostForm thread={currentThread} title={newTitle} />
+            <PostForm
+              thread={currentThread}
+              title={newTitle}
+              back={handleClickElement}
+            />
           </div>
         </div>
       );

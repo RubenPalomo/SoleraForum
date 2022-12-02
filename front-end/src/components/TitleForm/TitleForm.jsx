@@ -1,28 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./TitleForm.scss";
 
 function TitleForm(props) {
-  const [isNewTitle, setIsNewTitle] = useState(false);
+  const baseURL = "http://localhost:8090/form";
+  const [showWarning, setShowWarning] = useState(false);
   const [isFormEmpty, setIsFormEmpty] = useState(false);
-  const titles = [
-    "Messi y la magia",
-    "Lo que se metía Ronaldinho",
-    "Roban el SUUUUUUU al bicho",
-  ];
-  const handleSubmit = (e) => {
+
+  function handleSubmit(e) {
+    const title = e.target[0].value;
+
     e.preventDefault();
-    if (e.target[0].value.length == 0) {
-      setIsNewTitle(false);
+    if (title.length == 0) {
+      setShowWarning(false);
       setIsFormEmpty(true);
-    } else if (titles.includes(e.target[0].value)) {
-      setIsNewTitle(true);
-      setIsFormEmpty(false);
     } else {
-      setIsNewTitle(false);
       setIsFormEmpty(false);
-      props.setNewTitle(e.target[0].value);
+      axios
+        .post(baseURL, {
+          thread: props.thread,
+          title: title,
+        })
+        .then((response) => {
+          if (response.data.success) {
+            props.setNewTitle(title);
+          } else setShowWarning(true);
+        });
     }
-  };
+  }
 
   return (
     <div>
@@ -41,7 +46,7 @@ function TitleForm(props) {
         />
         <button className="formBtn">OK</button>
       </form>
-      <p className="warning" hidden={!isNewTitle}>
+      <p className="warning" hidden={!showWarning}>
         (!) This title already exists!
       </p>
       <p className="warning" hidden={!isFormEmpty}>

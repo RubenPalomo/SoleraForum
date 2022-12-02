@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import QuestionMark from "./../../assets/questionmark.png";
 import Pencil from "./../../assets/pencil.png";
 import Speaker from "./../../assets/speaker.png";
 import "./PostForm.scss";
 
 function PostForm(props) {
+  const baseURL = "http://localhost:8090/form";
   const [writeAvailable, setWriteAvailable] = useState(true);
   const [enabledCheckBtn, setEnabledCheckBtn] = useState(false);
   const [enabledSubmitBtn, setEnabledSubmitBtn] = useState(false);
+  const [isAllowed, setIsAllowed] = useState(true);
   const [img, setImg] = useState(QuestionMark);
   const changeImg = (e) => {
     switch (e.target.value) {
@@ -26,14 +29,24 @@ function PostForm(props) {
     if (!e.target.value == "") setEnabledCheckBtn(true);
     else setEnabledCheckBtn(false);
   };
-  const checkText = () => {
+  const checkText = (e) => {
+    e.preventDefault();
     setEnabledCheckBtn(false);
     setWriteAvailable(false);
-    setEnabledSubmitBtn(true);
+
+    axios
+      .post(baseURL, {
+        post: e.target[1].value,
+      })
+      .then((response) => {
+        if (!response.data.success) setIsAllowed(false);
+        else setEnabledSubmitBtn(true);
+      });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("CLICK!");
+    props.back();
   };
 
   return (
@@ -42,7 +55,7 @@ function PostForm(props) {
         {props.thread.toUpperCase()}: {props.title}
       </h2>
       <hr />
-      <form className="postForm" onSubmit={handleSubmit}>
+      <form className="postForm" onSubmit={checkText}>
         <label htmlFor="category" className="label">
           Category:
         </label>
@@ -67,20 +80,20 @@ function PostForm(props) {
           disabled={!writeAvailable}
           onChange={isFilled}
         />
-        <button
-          className="checkBtn"
-          onClick={checkText}
-          disabled={!enabledCheckBtn}
-        >
+        <button className="checkBtn" disabled={!enabledCheckBtn}>
           CHECK
         </button>
-        <button className="submitBtn" disabled={!enabledSubmitBtn}>
+        <button
+          className="submitBtn"
+          disabled={!enabledSubmitBtn}
+          onClick={handleSubmit}
+        >
           SEND
         </button>
       </form>
-      {/* <p className="warning" hidden={!isNewTitle}>
-        (!) This title already exists!
-      </p> */}
+      <p className="warning banned" hidden={isAllowed}>
+        (!) You have used banned words!
+      </p>
     </div>
   );
 }
