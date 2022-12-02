@@ -30,13 +30,18 @@ public class FormController {
     public HttpResponse saveTitle(@RequestBody Map<String, String> body) {
         String thread = body.get("thread");
         String title = body.get("title");
-
+        if (thread == null || title == null) {
+            return new HttpResponse("", "Invalid request body", false);
+        }
         return formRepository.addTitle(thread, title);
     }
 
     @PostMapping("/")
     public HttpResponse checkBody(@RequestBody Map<String, String> body) {
         String post = body.get("post");
+        if (post == null) {
+            return new HttpResponse("", "Invalid request body", false);
+        }
         return formRepository.checkBody(post);
     }
 }
