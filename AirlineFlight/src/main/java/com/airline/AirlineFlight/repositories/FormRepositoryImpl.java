@@ -21,7 +21,7 @@ public class FormRepositoryImpl implements FormRepository {
 
     @Override
     public HttpResponse addTitle(String thread, String title) {
-        title = title.toLowerCase().trim();
+        title = title.toLowerCase().trim().replaceAll("\\s+", " ");
         thread = thread.toLowerCase();
 
         switch (thread) {
@@ -60,7 +60,7 @@ public class FormRepositoryImpl implements FormRepository {
 
     @Override
     public HttpResponse checkBody(String body) {
-        body = body.toLowerCase().trim();
+        body = body.toLowerCase().trim().replaceAll("\\s+", " ");
         ArrayList<String> splittedBody = new ArrayList<>(Arrays.asList(body.split("\\s+")));
 
         for (String bannedWord : form.getBannedWords()) {
