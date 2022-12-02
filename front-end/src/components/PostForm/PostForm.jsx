@@ -77,21 +77,27 @@ function PostForm(props) {
           type="text"
           placehoder="Title of your new thread"
           className="inputText"
+          data-test="textArea"
           disabled={!writeAvailable}
           onChange={isFilled}
         />
-        <button className="checkBtn" disabled={!enabledCheckBtn}>
+        <button
+          className="checkBtn"
+          data-test="checkBtn"
+          disabled={!enabledCheckBtn}
+        >
           CHECK
         </button>
         <button
           className="submitBtn"
+          data-test="submitBtn"
           disabled={!enabledSubmitBtn}
           onClick={handleSubmit}
         >
           SEND
         </button>
         <label htmlFor="public" className="public">
-          Public{" "}
+          Public
         </label>
         <input id="public" className="public check" type="checkbox" />
       </form>

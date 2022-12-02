@@ -6,55 +6,41 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 
+import static com.codeborne.selenide.Condition.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import static com.codeborne.selenide.Condition.attribute;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 public class MainPageTest {
-    MainPage mainPage = new MainPage();
 
     @BeforeAll
     public static void setUpAll() {
-        Configuration.browserSize = "1280x1000"; // Resolución pantalla que se va a abrir
-        SelenideLogger.addListener("allure", new AllureSelenide()); // Abrir pantallaa
+        Configuration.browserSize = "1280x1000"; // Screen resolution
+        SelenideLogger.addListener("allure", new AllureSelenide()); // Open browser
     }
 
     @BeforeEach
     public void setUp() {
-        open("http://localhost:3000/");     // Página que va a abrirse
+        open("http://localhost:3000/");     // Url that will be open
     }
 
     @Test
-    public void search() {
+    public void createMessage() {
+        // Test to comprobate the main buttons and create a message on the Forum
+
         $("button[data-test='mainBtn']").click();
         $("button[data-test='football']").click();
-        $("button[data-test='football']").click();
-        $("search-input[data-test='titleForm']").sendKeys("Holii");
+        $("button[data-test='backBtn']").click();
+        $("button[data-test='gym']").click();
         $("button[data-test='titleFormBtn']").click();
-
-        //mainPage.searchButton.click();  // Aquí busca un botón usando el asistente y le hace click
-        //$("button[data-test='full-search-button']").click();  // Busca especificamente un botón y le clicka
-
-        //$("input[data-test='search-input']").shouldHave(attribute("value", "Selenium"));
-        // En caso de no encontrar algún elemento de lo que busca salta error
+        $("[data-test='warningEmptyField']").shouldBe(visible);
+        $("input[data-test='titleForm']").setValue("Holii");
+        $("input[data-test='titleForm']").shouldHave(attribute("value","Holii"));
+        $("button[data-test='titleFormBtn']").click();
+        $("[data-test='textArea']").setValue("Lorem ipsum dolor etc etc.");
+        $("button[data-test='checkBtn']").shouldBe(interactable);
+        $("button[data-test='checkBtn']").click();
+        $("button[data-test='submitBtn']").shouldBe(interactable);
+        $("button[data-test='submitBtn']").click();
     }
-
-    /*@Test
-    public void toolsMenu() {
-        mainPage.toolsMenu.click();
-
-        $("div[data-test='main-submenu']").shouldBe(visible);  // Busca que el main menú sea visible
-    }
-
-    @Test
-    public void navigationToAllTools() {
-        mainPage.seeAllToolsButton.click();
-
-        $("#products-page").shouldBe(visible);  // Busca la página y ve si es visible
-
-        assertEquals("All Developer Tools and Products by JetBrains", Selenide.title());
-        // Mira que el título de la página sea el siguiente
-    }*/
 }

@@ -52,7 +52,11 @@ function TitleForm(props) {
       <p className="warning" hidden={!showWarning}>
         (!) This title already exists!
       </p>
-      <p className="warning" hidden={!isFormEmpty}>
+      <p
+        className="warning"
+        hidden={!isFormEmpty}
+        data-test="warningEmptyField"
+      >
         (!) This field is required!
       </p>
     </div>

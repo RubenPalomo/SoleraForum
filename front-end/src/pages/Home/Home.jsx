@@ -30,7 +30,11 @@ function Home() {
         <div>
           <Header />
           <div className="scroll">
-            <button className="backBtn" onClick={handleClickElement}>
+            <button
+              className="backBtn"
+              data-test="backBtn"
+              onClick={handleClickElement}
+            >
               <img className="backImg" src={Back} />
             </button>
             <TitleForm thread={currentThread} setNewTitle={setNewTitle} />
