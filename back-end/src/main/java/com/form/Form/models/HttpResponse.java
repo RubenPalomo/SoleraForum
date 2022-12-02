@@ -1,4 +1,4 @@
-package com.airline.AirlineFlight.models;
+package com.form.Form.models;
 
 public class HttpResponse {
     private String data, message;

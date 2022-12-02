@@ -1,4 +1,4 @@
-package com.airline.AirlineFlight.controllers;
+package com.form.Form.controllers;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.airline.AirlineFlight.models.HttpResponse;
-import com.airline.AirlineFlight.repositories.FormRepository;
+import com.form.Form.models.HttpResponse;
+import com.form.Form.repositories.FormRepository;
 
 @RestController
 @RequestMapping("/form")
@@ -30,20 +30,15 @@ public class FormController {
 
     @PostMapping()
     public HttpResponse saveTitle(@RequestBody Map<String, String> body) {
-        String thread = body.get("thread");
-        String title = body.get("title");
-        if (thread == null || title == null) {
-            return new HttpResponse("", "Invalid request body", false);
-        }
-        return formRepository.addTitle(thread, title);
-    }
+        if (body.get("post") != null) {
 
-    @PostMapping("/")
-    public HttpResponse checkBody(@RequestBody Map<String, String> body) {
-        String post = body.get("post");
-        if (post == null) {
-            return new HttpResponse("", "Invalid request body", false);
+            return formRepository.checkBody(body.get("post"));
+
+        } else if (body.get("thread") != null || body.get("title") != null) {
+
+            return formRepository.addTitle(body.get("thread"), body.get("title"));
+
         }
-        return formRepository.checkBody(post);
+        return new HttpResponse("", "Invalid request body", false);
     }
 }
