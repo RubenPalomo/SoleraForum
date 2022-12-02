@@ -1,0 +1,35 @@
+.form {
+  font-size: x-large;
+  padding: 8%;
+}
+
+.titleThread {
+  width: 20%;
+}
+
+.inputThread {
+  margin: 5%;
+  font-size: large;
+  width: 50%;
+  height: 5vh;
+  padding: 1%;
+}
+
+.formBtn {
+  height: 5vh;
+  width: 10%;
+  color: white;
+  background-color: rgb(110, 110, 255);
+  border-radius: 10px;
+}
+
+.formBtn:hover:enabled {
+  background-color: rgb(145, 145, 255);
+  cursor: pointer;
+}
+
+.warning {
+  margin-top: -10vh;
+  font-size: 2vw;
+  color: red;
+}

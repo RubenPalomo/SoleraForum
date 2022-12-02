@@ -1,0 +1,12 @@
+.header {
+  font-size: 300%;
+  color: white;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgb(255, 246, 230) 100%
+  );
+  margin: 0;
+}
