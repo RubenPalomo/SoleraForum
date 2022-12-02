@@ -1,10 +1,10 @@
-package com.airline.AirlineFlight.repositories;
+package com.form.Form.repositories;
 
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Component;
 
-import com.airline.AirlineFlight.models.HttpResponse;
+import com.form.Form.models.HttpResponse;
 
 @Component
 public interface FormRepository {

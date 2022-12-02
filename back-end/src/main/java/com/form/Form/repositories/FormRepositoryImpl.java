@@ -1,12 +1,12 @@
-package com.airline.AirlineFlight.repositories;
+package com.form.Form.repositories;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.springframework.stereotype.Component;
 
-import com.airline.AirlineFlight.models.Form;
-import com.airline.AirlineFlight.models.HttpResponse;
+import com.form.Form.models.Form;
+import com.form.Form.models.HttpResponse;
 
 @Component
 public class FormRepositoryImpl implements FormRepository {

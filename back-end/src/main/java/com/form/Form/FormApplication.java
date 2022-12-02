@@ -1,4 +1,4 @@
-package com.airline.AirlineFlight;
+package com.form.Form;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
