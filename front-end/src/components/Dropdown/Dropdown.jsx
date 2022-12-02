@@ -4,6 +4,7 @@ import "./Dropdown.scss";
 function Dropdown(props) {
   const threads = props.threads;
   const handleClickElement = props.handleClickElement;
+
   return (
     <div className="scroll">
       <div className="dropdown">
