@@ -26,7 +26,7 @@ function TitleForm(props) {
 
   return (
     <div>
-      <h2>{props.thread}</h2>
+      <h2>{props.thread.toUpperCase()}</h2>
       <hr />
       <form className="form" onSubmit={handleSubmit}>
         <label htmlFor="title" className="titleThread">

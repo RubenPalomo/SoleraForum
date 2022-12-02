@@ -39,7 +39,7 @@ function PostForm(props) {
   return (
     <div>
       <h2>
-        {props.thread}: {props.title}
+        {props.thread.toUpperCase()}: {props.title}
       </h2>
       <hr />
       <form className="postForm" onSubmit={handleSubmit}>
