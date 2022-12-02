@@ -36,6 +36,22 @@
   cursor: pointer;
 }
 
+.checkBtn {
+  height: 5vh;
+  width: 10%;
+  position: absolute;
+  bottom: 28vh;
+  right: 23vw;
+  color: white;
+  background-color: rgb(110, 110, 255);
+  border-radius: 10px;
+}
+
+.checkBtn:hover:enabled {
+  background-color: rgb(145, 145, 255);
+  cursor: pointer;
+}
+
 .image {
   width: 5%;
   position: absolute;

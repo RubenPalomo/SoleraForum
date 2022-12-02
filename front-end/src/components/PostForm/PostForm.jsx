@@ -5,7 +5,9 @@ import Speaker from "./../../assets/speaker.png";
 import "./PostForm.scss";
 
 function PostForm(props) {
-  const [enabledBtn, setEnabledBtn] = useState(false);
+  const [writeAvailable, setWriteAvailable] = useState(true);
+  const [enabledCheckBtn, setEnabledCheckBtn] = useState(false);
+  const [enabledSubmitBtn, setEnabledSubmitBtn] = useState(false);
   const [img, setImg] = useState(QuestionMark);
   const changeImg = (e) => {
     switch (e.target.value) {
@@ -21,8 +23,13 @@ function PostForm(props) {
     }
   };
   const isFilled = (e) => {
-    if (!e.target.value == "") setEnabledBtn(true);
-    else setEnabledBtn(false);
+    if (!e.target.value == "") setEnabledCheckBtn(true);
+    else setEnabledCheckBtn(false);
+  };
+  const checkText = () => {
+    setEnabledCheckBtn(false);
+    setWriteAvailable(false);
+    setEnabledSubmitBtn(true);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,10 +64,18 @@ function PostForm(props) {
           type="text"
           placehoder="Title of your new thread"
           className="inputText"
+          disabled={!writeAvailable}
           onChange={isFilled}
         />
-        <button className="submitBtn" disabled={!enabledBtn}>
-          OK
+        <button
+          className="checkBtn"
+          onClick={checkText}
+          disabled={!enabledCheckBtn}
+        >
+          CHECK
+        </button>
+        <button className="submitBtn" disabled={!enabledSubmitBtn}>
+          SEND
         </button>
       </form>
       {/* <p className="warning" hidden={!isNewTitle}>
