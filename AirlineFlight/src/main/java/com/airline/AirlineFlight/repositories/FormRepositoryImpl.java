@@ -25,28 +25,28 @@ public class FormRepositoryImpl implements FormRepository {
         thread.toLowerCase();
 
         switch (thread) {
-            case "Football":
+            case "football":
                 if (!form.getFootballTitles().contains(title)) {
                     form.addFootballTitle(title);
                     return new HttpResponse(title, "Title added succesfully", true);
                 } else {
                     return new HttpResponse(title, "Title already exist", false);
                 }
-            case "Basketball":
+            case "basketball":
                 if (!form.getBasketballTitles().contains(title)) {
                     form.addBasketballTitle(title);
                     return new HttpResponse(title, "Title added succesfully", true);
                 } else {
                     return new HttpResponse(title, "Title already exist", false);
                 }
-            case "Gym":
+            case "gym":
                 if (!form.getGymTitles().contains(title)) {
                     form.addGymTitle(title);
                     return new HttpResponse(title, "Title added succesfully", true);
                 } else {
                     return new HttpResponse(title, "Title already exist", false);
                 }
-            case "Swimming":
+            case "swimming":
                 if (!form.getSwimmingTitles().contains(title)) {
                     form.addSwimmingTitle(title);
                     return new HttpResponse(title, "Title added succesfully", true);

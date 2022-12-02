@@ -7,6 +7,7 @@ public class Form {
 
     final public ArrayList<String> threads = new ArrayList<>(
             Arrays.asList("football", "basketball", "gym", "swimming"));
+
     final private ArrayList<String> bannedWords = new ArrayList<>(Arrays.asList("fuck", "suck", "god"));
 
     private ArrayList<String> footballTitles = new ArrayList<>();

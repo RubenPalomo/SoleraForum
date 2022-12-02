@@ -1,6 +1,7 @@
 package com.airline.AirlineFlight.controllers;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.bson.json.JsonObject;
 import org.json.JSONArray;
@@ -30,18 +31,16 @@ public class FormController {
     }
 
     @PostMapping()
-    public HttpResponse saveTitle(@RequestBody JSONObject body) {
-        System.out.println(body);
-        String thread = body.getString("thread");
-        String title = body.getString("title");
+    public HttpResponse saveTitle(@RequestBody Map<String, String> body) {
+        String thread = body.get("thread");
+        String title = body.get("title");
 
-        System.out.println(thread);
-        System.out.println(title);
         return formRepository.addTitle(thread, title);
     }
 
     @PostMapping("/")
-    public HttpResponse checkBody(@RequestBody String body) {
-        return formRepository.checkBody(body);
+    public HttpResponse checkBody(@RequestBody Map<String, String> body) {
+        String post = body.get("post");
+        return formRepository.checkBody(post);
     }
 }
