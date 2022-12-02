@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Header from "../../components/Header/Header";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import TitleForm from "../../components/TitleForm/TitleForm";
@@ -8,28 +7,21 @@ import Back from "./../../assets/back.png";
 import "./Home.scss";
 
 function Home() {
-  const baseURL = "";
   const [currentThread, setCurrentThread] = useState();
   const [isOpenThread, setIsOpenThread] = useState(false);
   const [newTitle, setNewTitle] = useState("");
-  const [threads, setThreads] = ["Football", "Basketball", "Gym", "Swimming"];
+
   const handleClickElement = (e) => {
     setCurrentThread(e.target.value);
     setIsOpenThread(!isOpenThread);
     setNewTitle("");
   };
 
-  useEffect(() => {
-    axios.get(baseURL).then((response) => {
-      setThreads(response.data);
-    });
-  }, []);
-
   if (!isOpenThread)
     return (
       <div>
         <Header />
-        <Dropdown threads={threads} handleClickElement={handleClickElement} />
+        <Dropdown handleClickElement={handleClickElement} />
       </div>
     );
   else {

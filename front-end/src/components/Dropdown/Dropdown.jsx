@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./Dropdown.scss";
 
 function Dropdown(props) {
-  const threads = props.threads;
+  const baseURL = "http://localhost:8090/form";
+  const [threads, setThreads] = useState([]);
   const handleClickElement = props.handleClickElement;
 
+  useEffect(() => {
+    axios.get(baseURL).then((response) => {
+      setThreads(response.data);
+    });
+  }, []);
   return (
     <div className="scroll">
       <div className="dropdown">
