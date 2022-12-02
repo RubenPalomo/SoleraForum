@@ -43,8 +43,11 @@ function TitleForm(props) {
           type="text"
           placehoder="Title of your new thread"
           className="inputThread"
+          data-test="titleForm"
         />
-        <button className="formBtn">OK</button>
+        <button className="formBtn" data-test="titleFormBtn">
+          OK
+        </button>
       </form>
       <p className="warning" hidden={!showWarning}>
         (!) This title already exists!

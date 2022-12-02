@@ -90,6 +90,10 @@ function PostForm(props) {
         >
           SEND
         </button>
+        <label htmlFor="public" className="public">
+          Public{" "}
+        </label>
+        <input id="public" className="public check" type="checkbox" />
       </form>
       <p className="warning banned" hidden={isAllowed}>
         (!) You have used banned words!

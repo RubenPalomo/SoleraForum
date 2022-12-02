@@ -15,7 +15,7 @@ function Dropdown(props) {
   return (
     <div className="scroll">
       <div className="dropdown">
-        <button type="button" className="dropbtn">
+        <button type="button" className="dropbtn" data-test="mainBtn">
           Create a thread
         </button>
         <div className="content">
@@ -24,6 +24,7 @@ function Dropdown(props) {
               key={index}
               className="thread"
               value={element}
+              data-test={element}
               onClick={handleClickElement}
             >
               {element}
